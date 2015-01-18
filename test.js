@@ -11,11 +11,13 @@ var expect = require('chai').expect,
 
 function loadFixture(fixture) {
     var cssFile = path.join('./fixtures', fixture) + '.css';
+    console.log(cssFile);
     return fs.readFileSync(cssFile, 'utf-8').replace('\n', '');
 }
 
 var inFile  = loadFixture('in');
 var outFile = loadFixture('out');
+var outSafe = loadFixture('out.safe');
 
 describe('gulp-css-condense', function () {
     it('should condense css files', function (cb) {
@@ -23,6 +25,19 @@ describe('gulp-css-condense', function () {
 
         stream.on('data', function (data) {
             expect(String(data.contents)).to.equal(outFile);
+            cb();
+        });
+
+        stream.write(new gutil.File({
+            contents: new Buffer(inFile)
+        }));
+    });
+
+    it('should condense css files, safely', function (cb) {
+        var stream = cssc({ safe: true });
+
+        stream.on('data', function (data) {
+            expect(String(data.contents)).to.equal(outSafe);
             cb();
         });
 
