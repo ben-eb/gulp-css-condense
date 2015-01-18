@@ -1,6 +1,6 @@
 {
   "name": "gulp-css-condense",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A gulp plugin for the CSS compressor that shows no mercy.",
   "license": "MIT",
   "homepage": "https://github.com/ben-eb/gulp-css-condense",
