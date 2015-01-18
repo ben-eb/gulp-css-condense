@@ -11,7 +11,6 @@ var expect = require('chai').expect,
 
 function loadFixture(fixture) {
     var cssFile = path.join('./fixtures', fixture) + '.css';
-    console.log(cssFile);
     return fs.readFileSync(cssFile, 'utf-8').replace('\n', '');
 }
 

@@ -4,7 +4,7 @@ var cssc        = require('css-condense'),
     gutil       = require('gulp-util'),
     transform   = require('stream').Transform,
 
-    PLUGIN_NAME = 'gulp-uncss';
+    PLUGIN_NAME = 'gulp-css-condense';
 
 module.exports = function(options) {
     var stream = new transform({ objectMode: true });
