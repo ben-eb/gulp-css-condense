@@ -11,14 +11,13 @@ module.exports = function(options) {
 
     stream._transform = function(file, unused, done) {
         if (file.isStream()) {
-            return done(new gutil.PluginError(PLUGIN_NAME, 'Streaming not supported'));
+            var msg = 'Streaming not supported';
+            return done(new gutil.PluginError(PLUGIN_NAME, msg));
         } else if (file.isBuffer()) {
-            file.contents = new Buffer(cssc.compress(String(file.contents), options));
-            done(null, file);
-        } else {
-            // Pass through when null
-            done(null, file);
+            var compressed = cssc.compress(String(file.contents), options);
+            file.contents = new Buffer(compressed);
         }
+        done(null, file);
     };
 
     return stream;
